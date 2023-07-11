@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>onblur Event Example</title>
+</head>
+<body>
+
+  <input type="text" id="nameInput" onblur="handleBlur()">
+
+  <script>
+    function handleBlur() {
+      var name = document.getElementById('nameInput').value;
+      console.log('Input field lost focus. Value:', name);
+      alert(name)
+
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>ON change</title>
+</head>
+<body>
+    <input type="text" id="name" onchange="handleChange()">
+    <script>
+        function handleChange(){
+            let name=document.getElementById("name").value;
+            console.log('Name recived sucess',name)
+            alert("name changed")
+        }
+    </script>
+</body>
+</html>

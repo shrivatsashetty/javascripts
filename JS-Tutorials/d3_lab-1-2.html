@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>D3 Tutorial</title>
+
+
+    <script src="https://d3js.org/d3.v7.js"></script>
+    <style>
+        svg rect {
+            fill: rgb(1, 110, 2);
+        }
+
+        svg text {
+            fill: rgb(201, 186, 23);
+            font: 50px;
+            text-anchor: end;
+        }
+    </style>
+</head>
+
+<body>
+    <div> <!-- Main -->
+        <div>
+            <button onclick="showData()">Show Bar Graph</button>
+            <br><br>
+            <svg></svg>
+        </div>
+
+    </div>
+    </div>
+    <script>
+        function showData() {
+            // Data
+
+            var s1 = parseInt(prompt("Data 1 (max 100)"))
+            var s2 = parseInt(prompt("Data 2"))
+            var s3 = parseInt(prompt("Data 3"))
+            var s4 = parseInt(prompt("Data 4"))
+            var s5 = parseInt(prompt("Data 5"))
+            var s6 = parseInt(prompt("Data 6"))
+
+            var dataset = [s1, s2, s3, s4, s5, s6];
+
+            // Graph dimensions
+            var width = 1100;
+            var barHeight = 35;
+            var scaleFactor = 10;
+
+            // Graph element
+            var graph = d3.select("svg")
+                .attr("width", width)
+                .attr("height", barHeight * dataset.length);
+
+            // Animation and appending
+            var bar = graph.selectAll("g")
+                .data(dataset) // buffer
+                .enter()       // continue next
+                .append("g")
+                .attr("transform", function (d, i) {
+                    return "translate(0," + i * barHeight + ")";
+                });
+
+            // Width and Height of individual data elements
+            bar.append("rect")
+                .attr("height", barHeight - 3)
+                // .transition() // Start the transition
+                // .duration(1000) // Set the duration in milliseconds
+                .attr("width", function (d) { return d * scaleFactor; })
+
+            // Text inside the graph
+            bar.append("text")
+                // .transition() // Start the transition
+                // .duration(1000) // Set the duration in milliseconds
+                .attr("x", function (d) {
+                    return ((d * scaleFactor) - 10);
+                })
+
+                .attr("y", barHeight / 2)
+
+                .text(function (d) { return d; });
+        }
+    </script>
+</body>
+
+</html>
